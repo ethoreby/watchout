@@ -41,14 +41,22 @@ svg.selectAll('.enemy')
   .data(dots)
   .enter()
   .append('circle')
-  .attr('class', 'enemy')
-  .attr('cx', function(d) { return d.x; })
-  .attr('cy', function(d) { return d.y; })
-  .attr('r', 10);
-  // .style('background-color', function(d) { return '#' + Math.floor(Math.random() * 100000)});
+  .attr({'class': 'enemy', 'cx': function(d) { return d.x; }, 'cy': function(d) { return d.y; }, 'r': 10});
 
-// var in-progress =
-setInterval(function() {
+var collisions = setInterval(function() {
+
+  d3.selectAll('.enemy').each(function(d, i) {
+    var enemyX = d.x;
+    var enemyY = d.y;
+    if (Math.abs(d.x - player.attr('cx')) < 20) {
+      if (Math.abs(d.y - player.attr('cy')) < 20) {
+        setScore(true);
+      }
+    }
+  });
+}, 10);
+
+var inProgress = setInterval(function() {
   for (var i = 0; i < dots.length; i++) {
     dots[i]['x'] = Math.floor(Math.random() * 900);
     dots[i]['y'] = Math.floor(Math.random() * 500);
@@ -58,6 +66,17 @@ setInterval(function() {
     .transition().duration(moveInterval)
     .attr('cx', function(d) { return d.x; })
     .attr('cy', function(d) { return d.y; });
-  score = d3.select('.current').select('span').text();
-  d3.select('.current').select('span').text(parseInt(score) + 1);
+    setScore(false);
 }, moveInterval);
+
+var setScore = function(collision) {
+  if(collision) {
+    d3.select('.current').select('span').text(0);
+  }else{
+    var score = d3.select('.current').select('span').text();
+    d3.select('.current').select('span').text(parseInt(score) + 1);
+  }
+};
+
+
+
