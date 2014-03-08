@@ -1,5 +1,27 @@
 /* your beautiful css styling goes here! */
 
-/* Note: an asteroid image is included in this repo. 
+/* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
 
+.wrapper {
+  width: 960px;
+  margin: 20px 0;
+}
+
+.scoreboard {
+  height: 60px;
+}
+
+.experiments {
+  width: 600px;
+  height: 300px;
+  background: #eef;
+}
+
+.experiments div {
+  background: #f66;
+}
+
+svg {
+  background-color: #f9f9f9;
+}
