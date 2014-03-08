@@ -22,6 +22,12 @@ Feel free to use it if you like. */
   background: #f66;
 }
 
-svg {
+.svg-wrap {
+  height: 500px;
+  width: 900px;
   background-color: #f9f9f9;
+}
+
+svg {
+  background: transparent;
 }
